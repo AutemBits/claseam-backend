@@ -1,1 +1,0 @@
-module.export = 'mongodb://10.8.0.1:27017/claseam';
