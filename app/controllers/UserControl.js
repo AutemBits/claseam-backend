@@ -27,7 +27,8 @@ module.exports = {
       forename : req.body.forename,
       surname : req.body.surname,
       email : req.body.email,
-      password: hashPassword,
+      password : hashPassword,
+      type : req.body.type,
       group : req.body.group,
       grades : req.body.grades
     });
@@ -59,6 +60,7 @@ module.exports = {
       surname : req.body.surname,
       email : req.body.email,
       password: hashPassword,
+      type : req.body.type,
       group : req.body.group,
       grades : req.body.grades
     });
