@@ -1,12 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv')
 const cors = require('cors');
 const app = express();
 const db = require('./app/config/db');
 
+// Load .env config file
+
+dotenv.config()
+
 // Database
 
-mongoose.connect('mongodb://localhost:27017/claseam', { useNewUrlParser : true } )
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser : true } )
   .then(() => console.log('La conexión a la base de datos ha sido establecida.'))
   .catch(err => console.error(err));
 
