@@ -1,15 +1,13 @@
+const router = require('express').Router();
 const verify = require('../../VerifyToken');
-
-module.exports = app => {
-
-    const UserControl = require('../controllers/UserControl');
+const UserControl = require('../controllers/UserControl');
     
-    app.post('/api/user/create', UserControl.create);
+router.post('/create', UserControl.create);
 
-    app.post('/api/user/update', verify.auth, UserControl.update);
+router.post('/update', verify.auth, UserControl.update);
 
-    app.get('/api/user/retrieve', verify.auth, UserControl.retrieve);
+router.get('/retrieve', verify.auth, UserControl.retrieve);
 
-    app.delete('/api/user/delete', verify.auth, UserControl.delete);
+router.delete('/delete', verify.auth, UserControl.delete);
 
-};
+module.exports = router;
