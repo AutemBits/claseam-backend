@@ -4,7 +4,7 @@ const Joi = require('@hapi/joi');
 
 module.exports = {
     // Function to validate user data
-    user = data => {
+    user: data => {
         let schema = {
             email: Joi.string().email().required(),
             /*
