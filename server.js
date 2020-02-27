@@ -10,7 +10,7 @@ dotenv.config()
 
 // Database
 
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser : true } )
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser : true, useUnifiedTopology: true} )
   .then(() => console.log('La conexión a la base de datos ha sido establecida.'))
   .catch(err => console.error(err));
 
@@ -22,7 +22,9 @@ app.use(cors);
 
 // Routes
 
-require('./app/routes/UserRoutes.js')(app);
+const UserRoutes = require('./app/routes/UserRoutes');
+
+app.use('/api/user', UserRoutes);
 
 // Start Server
 
