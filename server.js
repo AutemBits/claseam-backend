@@ -22,10 +22,6 @@ app.use(cors());
 
 // Routes
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Express Server for CRUD REST API using MySQL.' });
-});
-
 const UserRoutes = require('./app/routes/UserRoutes');
 const AuthenticationRoutes = require('./app/routes/AuthenticationRoutes');
 
