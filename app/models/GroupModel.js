@@ -15,9 +15,13 @@ const GroupSchema = new Schema ({
     Group : String,
     Calendar : String,
     Subject: String,
+    Alumni: Array,
     Activities: Array,
     Periods: PeriodSchema,
     Status: String
 });
 
-module.exports = mongoose.model('group', GroupSchema);
+const GroupModel = mongoose.model('group', GroupSchema);
+const PeriodModel = mongoose.model('period', PeriodSchema); 
+
+module.exports = { GroupModel, PeriodModel };
