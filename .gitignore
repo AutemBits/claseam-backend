@@ -89,4 +89,4 @@ typings/
 
 # Private key files
 
-*.pem
+*.key
