@@ -3,7 +3,6 @@ const Validate = require('../../DataValidation');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-  // Function to create new users
   create: async (req, res) => {
 
     // Data validation using previosly defined schemas from the DataValidation import
@@ -32,6 +31,11 @@ module.exports = {
       group : req.body.group,
       grades : req.body.grades
     });
+
+    /*
+    *     TODO:
+    *         Add to group
+    */
     
     await user.save()
       .then(result => {
@@ -87,9 +91,13 @@ module.exports = {
   delete: async (req, res) => {
     await UserModel.remove({_id: req.body._id})
       .then(result => {
-        if (!result) res.json({ success: false, result: "No user was found with the ID" });
+        if (!result) res.json({ success: false, result: "No user was found with the ID ${req.body.id}" });
         res.json({ success: true, result: result });
       })
       .catch(err => res.json({ success: false, result: err }));
   }
+  /*
+  *     TODO:
+  *         Upload Activity
+  */
 }
