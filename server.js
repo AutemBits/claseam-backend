@@ -22,11 +22,17 @@ app.use(cors());
 
 // Routes
 
+const GroupRoutes = require('./app/routes/GroupRoutes');
 const UserRoutes = require('./app/routes/UserRoutes');
 const AuthenticationRoutes = require('./app/routes/AuthenticationRoutes');
+const SubjectRoutes = require('./app/routes/SubjectRoutes');
+const ActivityRoutes = require('./app/routes/ActivityRoutes');
 
+app.use('/api/group', GroupRoutes);
 app.use('/api/user', UserRoutes);
 app.use('/api/auth', AuthenticationRoutes);
+app.use('/api/subject', SubjectRoutes);
+app.use('/api/activity', ActivityRoutes);
 
 // Start Server
 
