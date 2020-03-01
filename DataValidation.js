@@ -5,8 +5,13 @@ const Joi = require('@hapi/joi');
 module.exports = {
     // Function to validate user data
     user: data => {
-        let schema = {
-            email: Joi.string().email().required(),
+        let schema = Joi.object({
+            forename: Joi.string(),
+            surname: Joi.string(),
+            email: Joi.string()
+                .email()
+                .required(),
+            
             /*
             *   Passwords must have the following requirements:
             *       - Be at least 6 characters long
@@ -14,8 +19,17 @@ module.exports = {
             *       - Have at least 1 uppercase letter
             *       - Have at least 1 number 
             */
-            password: Joi.string().regex(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])")).min(6).required()
-        }
-        return Joi.validate(data, schema);
+            
+            password: Joi.string()
+                .regex(new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])"))
+                .min(6)
+                .required(),
+
+            type: Joi.string(),
+            group: Joi.string(),
+            grades: Joi.array()
+
+        });
+        return schema.validate(data);
     }
 };
