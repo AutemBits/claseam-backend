@@ -18,13 +18,19 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser : true, useUnifiedTop
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 
 // Routes
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Express Server for CRUD REST API using MySQL.' });
+});
+
 const UserRoutes = require('./app/routes/UserRoutes');
+const AuthenticationRoutes = require('./app/routes/AuthenticationRoutes');
 
 app.use('/api/user', UserRoutes);
+app.use('/api/auth', AuthenticationRoutes);
 
 // Start Server
 
