@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const SubjectModel = new Schema ({
     name : String,
     curriculum : String,
-    email : String
+    active: Boolean
 });
 
 module.exports = mongoose.model('subject', SubjectModel);
