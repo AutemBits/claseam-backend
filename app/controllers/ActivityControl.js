@@ -37,16 +37,18 @@ module.exports = {
         res.json({ success: false, result: err });
       });
   },
-  /*
-  *     TODO:
-  *         Retrieve for specific subject
-  *         Retrieve for specific group
-  */
   retrieve: async (req, res) => {
     await ActivityModel.find()
       .then(result => {
         if (!result) res.json({ success: false, result: "No results found" });
-
+        res.json({ success: true, result: result });
+      })
+      .catch(err => res.json({success: false, result: err}));
+  },
+  subject: async (req, res) => {
+    await ActivityModel.find({subject : req.body.subject})
+      .then(result=> {
+        if (!result) res.json({ success: false, result: "No results found"});
         res.json({ success: true, result: result });
       })
       .catch(err => res.json({success: false, result: err}));
