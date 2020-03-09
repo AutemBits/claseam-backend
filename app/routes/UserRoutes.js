@@ -14,9 +14,13 @@ router.post('/create', UserControl.create);
 *       one should be for users to change their own
 *       data and another one for the admin to chan-
 *       ge other users information.
-*/ 
+*/
 
-router.post('/update', verify.auth, UserControl.update);
+router.put('/update', verify.auth, UserControl.update);
+
+router.put('/gradeActivity', verify.auth, UserControl.gradeActivity);
+
+router.put('/uploadActivity', verify.auth, UserControl.uploadActivity);
 
 //  User data retrieval route
 

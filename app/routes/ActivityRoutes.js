@@ -8,6 +8,8 @@ router.post('/update', verify.authsu, ActivityControl.update);
 
 router.get('/retrieve', verify.authsu, ActivityControl.retrieve);
 
+router.get('/subject', verify.authsu, ActivityControl.subject);
+
 router.delete('/delete', verify.authsu, ActivityControl.delete);
 
 module.exports = router;
