@@ -72,6 +72,14 @@ module.exports = {
       })
       .catch(err => res.json({success: false, result: err}));
   },
+  retrieveOne: async (req, res) => {
+    await GroupModel.findById(req.body._id)
+      .then(result => {
+        if (!result) res.json({ success: false, result: "No results found" });
+        res.json({ success: true, result: result });
+      })
+      .catch(err => res.json({ success: false, result: err}));
+  },
   delete: async (req, res) => {
     await GroupModel.remove({_id: req.body._id})
       .then(result => {
@@ -79,11 +87,25 @@ module.exports = {
         res.json({ success: true, result: result });
       })
       .catch(err => res.json({ success: false, result: err }));
+  },
+  assignActivity: async (req, res) => {
+    await GroupModel.findByIdAndUpdate(req.body._id, { $push : { activities : req.body.activity } })
+      .then(result => {
+        if (!result) res.json({ success : false, result: "Group does not exist"});
+        res.json(result);
+      })
+      .catch(err => {
+        res.json({ success : false, result: err });
+      });
+  },
+  addUser: async (req, res) => {
+    await GroupModel.findByIdAndUpdate(req.body.group, { $push : { Alumni : req.body._id } })
+      .then(result => {
+        if (!result) res.json({ success : false, result: "Group does not exist"});
+        res.json(result);
+      })
+      .catch(err => {
+        res.json({ success : false, result: err });
+      });
   }
-  /*
-  *     TODO:
-  *         Assign Activity
-  *         Grade Activity
-  *         
-  */
 }
