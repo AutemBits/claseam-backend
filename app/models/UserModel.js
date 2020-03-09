@@ -10,7 +10,8 @@ const UserSchema = new Schema ({
     password: String,
     type : String,
     group : String,
-    grades : Array
+    grades : Array,
+    activities : Array
 });
 
 module.exports = mongoose.model('user', UserSchema);
