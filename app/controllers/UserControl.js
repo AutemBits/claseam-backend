@@ -29,13 +29,9 @@ module.exports = {
       password : hashPassword,
       type : req.body.type,
       group : req.body.group,
-      grades : req.body.grades
+      grades : req.body.grades,
+      activities : req.body.activities
     });
-
-    /*
-    *     TODO:
-    *         Add to group
-    */
     
     await user.save()
       .then(result => {
@@ -66,7 +62,8 @@ module.exports = {
       password: hashPassword,
       type : req.body.type,
       group : req.body.group,
-      grades : req.body.grades
+      grades : req.body.grades,
+      activities : req.body.activities
     });
 
     await UserModel.update({_id: req.body._id}, user)
@@ -95,9 +92,25 @@ module.exports = {
         res.json({ success: true, result: result });
       })
       .catch(err => res.json({ success: false, result: err }));
+  },
+  gradeActivity: async (req, res) => {
+    await UserModel.findOneAndUpdate(req.body.alumn, { $push : { grades : [req.body.activity, req.body.grade] } })
+    .then(result => {
+      if (!result) res.json({ success : false, result: "Alumn does not exist"});
+      res.json(result);
+    })
+    .catch(err => {
+      res.json({ success : false, result: err });
+    });
+  },
+  uploadActivity: async (req, res) => {
+    await UserModel.findOneAndUpdate(req.body._id, { $push : { activities : req.body.activity } })
+    .then(result => {
+      if (!result) res.json({ success : false, result: "Alumn does not exist"});
+      res.json(result);
+    })
+    .catch(err => {
+      res.json({ success : false, result: err });
+    });
   }
-  /*
-  *     TODO:
-  *         Upload Activity
-  */
 }
