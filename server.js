@@ -4,9 +4,9 @@ const dotenv = require('dotenv')
 const cors = require('cors');
 const app = express();
 
-// Load .env config file
+// Load .env config file as well as keys required for push notifications
 
-dotenv.config()
+dotenv.config();
 
 // Database
 
@@ -27,12 +27,14 @@ const UserRoutes = require('./app/routes/UserRoutes');
 const AuthenticationRoutes = require('./app/routes/AuthenticationRoutes');
 const SubjectRoutes = require('./app/routes/SubjectRoutes');
 const ActivityRoutes = require('./app/routes/ActivityRoutes');
+const NotificationRoutes = require('./app/routes/NotificationRoutes');
 
 app.use('/api/group', GroupRoutes);
 app.use('/api/user', UserRoutes);
 app.use('/api/auth', AuthenticationRoutes);
 app.use('/api/subject', SubjectRoutes);
 app.use('/api/activity', ActivityRoutes);
+app.use('/api/notifications', NotificationRoutes);
 
 // Start Server
 
