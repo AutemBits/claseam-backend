@@ -11,7 +11,8 @@ const UserSchema = new Schema ({
     type : String,
     group : String,
     grades : Array,
-    activities : Array
+    activities : Array,
+    subscription : Object
 });
 
 module.exports = mongoose.model('user', UserSchema);

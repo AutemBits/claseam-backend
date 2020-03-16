@@ -30,7 +30,8 @@ module.exports = {
       type : req.body.type,
       group : req.body.group,
       grades : req.body.grades,
-      activities : req.body.activities
+      activities : req.body.activities,
+      subscription : req.body.subscription
     });
     
     await user.save()
@@ -63,7 +64,8 @@ module.exports = {
       type : req.body.type,
       group : req.body.group,
       grades : req.body.grades,
-      activities : req.body.activities
+      activities : req.body.activities,
+      subscription : req.body.subscription
     });
 
     await UserModel.update({_id: req.body._id}, user)
@@ -112,5 +114,14 @@ module.exports = {
     .catch(err => {
       res.json({ success : false, result: err });
     });
+  },
+  retrieveByGroup: async (req, res) => {
+    await UserModel.find( { group : req.body.group } )
+      .then(result => {
+        if (!result) res.json({ success: false, result: "No results found" });
+
+        res.json({ success: true, result: result });
+      })
+      .catch(err => res.json({success: false, result: err}));
   }
 }
