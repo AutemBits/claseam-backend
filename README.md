@@ -16,6 +16,9 @@ After that, you'll need to get a private key using openssl (place the file on th
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out claseam.key
 ```
 
+Finally, you'll need to set up VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY on the ".env" file the way you did with the
+mongodb string.
+
 That's it! You now have a fully functional copy of this project
 
 ## Where's the frontend?
