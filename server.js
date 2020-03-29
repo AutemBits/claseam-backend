@@ -38,4 +38,4 @@ app.use('/api/notifications', NotificationRoutes);
 
 // Start Server
 
-app.listen(3000, () => console.log('El servidor ha sido inicializado en el puerto 3000...'));
+app.listen(3000, '0.0.0.0', () => console.log('El servidor ha sido inicializado en el puerto 3000...'));
